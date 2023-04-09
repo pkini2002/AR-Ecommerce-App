@@ -54,7 +54,7 @@
                         android:layout_height="200dp"
                         android:id="@+id/slidercomp"
                         app:cardBackgroundColor="@color/lavender"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="50dp"
                         android:layout_marginEnd="20dp"
                         android:layout_marginStart="20dp"
                         app:cardElevation="20dp"
@@ -328,32 +328,14 @@
                         android:layout_height="48dp"
                         android:id="@+id/switchMode"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="750dp"
+                        android:layout_marginLeft="50dp"
                         android:thumb="@drawable/thumb"
                         app:track="@drawable/track"
                         app:layout_constraintEnd_toEndOf="parent" />
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/shirtName"-->
-<!--                        style="@style/TextColor"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@+id/clothingImage"-->
-<!--                        android:layout_centerHorizontal="true"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:fontFamily="@font/poppins_semibold"-->
-<!--                        android:text="T-Shirts"-->
-<!--                        android:textSize="20sp" />-->
-
-
                 </RelativeLayout>
             </ScrollView>
-
         </FrameLayout>
-
-
-
-
      </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
