@@ -1,63 +1,149 @@
 package com.example.ar_ecommerce;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.appcompat.widget.Toolbar;
+//import android.support.v7.widget.Toolbar;
+//import android.widget.Toolbar;
+
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-     SwitchCompat switchMode;
-     boolean nightMode;
-     SharedPreferences sharedPreferences;
-     SharedPreferences.Editor editor;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    SwitchCompat switchMode;
+    boolean nightMode;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    ImageSlider imageSlider;
+
+    private DrawerLayout drawerLayout;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageSlider imageSlider=findViewById(R.id.ImageSlider);
-        ArrayList<SlideModel>slideModels=new ArrayList<>();
+        imageSlider = findViewById(R.id.ImageSlider);
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
 
         slideModels.add(new SlideModel(R.drawable.mobileecommerce, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.onlineshopping, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.coat, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.shirt, ScaleTypes.FIT));
 
-        imageSlider.setImageList(slideModels,ScaleTypes.FIT);
+        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
 
-        switchMode=findViewById(R.id.switchMode);
-        sharedPreferences=getSharedPreferences("MODE", Context.MODE_PRIVATE);
-        nightMode=sharedPreferences.getBoolean("nightMode",false);
+        switchMode = findViewById(R.id.switchMode);
+        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        nightMode = sharedPreferences.getBoolean("nightMode", false);
 
-        if(nightMode){
+        if (nightMode) {
             switchMode.setChecked(true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
-
         switchMode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nightMode){
+                if (nightMode) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    editor=sharedPreferences.edit();
-                    editor.putBoolean("nightMode",false);
-                }else{
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("nightMode", false);
+                } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    editor=sharedPreferences.edit();
-                    editor.putBoolean("nightMode",true);
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("nightMode", true);
                 }
                 editor.apply();
             }
         });
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
+                R.string.close_nav);
+
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
+
+
     }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId())
+        {
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new homeFragment()).commit();
+                break;
+            case R.id.nav_about:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new aboutFragment()).commit();
+                Intent i=new Intent(this,about.class);
+                startActivity(i);
+                break;
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new settingsFragment()).commit();
+                break;
+            case R.id.nav_share:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new shareFragment()).commit();
+                break;
+            case R.id.nav_logout:
+                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else {
+            super.onBackPressed();
+        }
+
+    }
+
 }
+
+
+
+
+
+

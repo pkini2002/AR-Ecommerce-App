@@ -1,302 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/ScreenBackground"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/drawerLayout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
     tools:context=".MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/constraintLayout"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-<!--        Slider View Component -->
-        <androidx.cardview.widget.CardView
+
+<!--        <android.support.v7.widget.Toolbar-->
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/slidercomp"
-            app:cardBackgroundColor="@color/lavender"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            app:cardElevation="20dp"
-            app:cardCornerRadius="20dp">
+            android:layout_height="56dp"
+            android:id="@+id/toolbar"
+            android:elevation="4dp"
+            android:background="@color/grey"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-            <com.denzcoskun.imageslider.ImageSlider
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container">
+
+
+            <ScrollView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ScreenBackground"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:id="@+id/ImageSlider"
-                app:iss_period="1000"
-                app:iss_auto_cycle="true"
-                app:iss_delay="1000"
-                app:iss_corner_radius="20"/>
-        </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:id="@+id/row1"
-            android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:layout_marginTop="250dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/slidercomp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/shirtCard"
-                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                style="@style/CardBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="20dp">
+                tools:context=".MainActivity">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/constraintLayout"
+                    android:layout_marginTop="20dp">
 
-                    <ImageView
-                        android:id="@+id/clothingImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/shirt" />
+                    <!--        Slider View Component -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:id="@+id/slidercomp"
+                        app:cardBackgroundColor="@color/lavender"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        app:cardElevation="20dp"
+                        app:cardCornerRadius="20dp">
 
-                    <TextView
-                        android:id="@+id/shirtName"
-                        style="@style/TextColor"
+
+                        <com.denzcoskun.imageslider.ImageSlider
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:id="@+id/ImageSlider"
+                            app:iss_period="1000"
+                            app:iss_auto_cycle="true"
+                            app:iss_delay="1000"
+                            app:iss_corner_radius="20"/>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:id="@+id/row1"
+                        android:layout_width="match_parent"
+                        android:layout_height="175dp"
+                        android:layout_marginTop="250dp"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/slidercomp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/shirtCard"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            style="@style/CardBackground"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/clothingImage"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="15dp"
+                                    android:src="@drawable/shirt" />
+
+                                <TextView
+                                    android:id="@+id/shirtName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/clothingImage"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text="T-Shirts"
+                                    style="@style/TextColor"
+                                    android:textSize="20sp" />
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/coatCard"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="20dp"
+                            style="@style/CardBackground"
+                            app:cardElevation="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/coatImage"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="15dp"
+                                    android:src="@drawable/coat" />
+
+                                <TextView
+                                    android:id="@+id/clothingName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/coatImage"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text="Coats"
+                                    style="@style/TextColor"
+                                    android:textSize="20sp" />
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <!--  2nd Linear Loyout horizontal -->
+                    <LinearLayout
+                        android:layout_width="500dp"
+                        android:layout_height="175dp"
+                        android:id="@+id/row2"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="400dp"
+                        android:padding="10dp"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/row1">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            app:cardElevation="20dp"
+                            style="@style/CardBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/capName"
+                                    android:text="Caps"
+                                    android:textSize="20sp"
+                                    style="@style/TextColor"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_below="@+id/capImage"/>
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:id="@+id/capImage"
+                                    android:src="@drawable/cap"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_centerHorizontal="true" />
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            app:cardElevation="20dp"
+                            style="@style/CardBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/frockName"
+                                    android:text="Frocks"
+                                    android:textSize="20sp"
+                                    style="@style/TextColor"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_below="@+id/frockImage"/>
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:id="@+id/frockImage"
+                                    android:src="@drawable/frock"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_centerHorizontal="true" />
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <!--  3rd linear layout horizontal-->
+                    <LinearLayout
+                        android:layout_width="500dp"
+                        android:layout_height="175dp"
+                        android:id="@+id/row3"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="550dp"
+                        android:padding="10dp"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/row2">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            app:cardElevation="20dp"
+                            style="@style/CardBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/pantName"
+                                    android:text="Pants"
+                                    android:textSize="20sp"
+                                    style="@style/TextColor"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_below="@+id/pantImage"/>
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:id="@+id/pantImage"
+                                    android:src="@drawable/pant"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_centerHorizontal="true" />
+
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_weight="1"
+                            app:cardElevation="20dp"
+                            style="@style/CardBackground"
+                            app:cardCornerRadius="20dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/shortsName"
+                                    android:text="Shorts"
+                                    android:textSize="20sp"
+                                    style="@style/TextColor"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_below="@+id/shortsImage"/>
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:id="@+id/shortsImage"
+                                    android:src="@drawable/shorts"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_centerHorizontal="true" />
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                    <androidx.appcompat.widget.SwitchCompat
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/clothingImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="T-Shirts"
-                        android:textSize="20sp" />
+                        android:layout_height="48dp"
+                        android:id="@+id/switchMode"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="30dp"
+                        android:thumb="@drawable/thumb"
+                        app:track="@drawable/track"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/shirtName"-->
+<!--                        style="@style/TextColor"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/clothingImage"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:fontFamily="@font/poppins_semibold"-->
+<!--                        android:text="T-Shirts"-->
+<!--                        android:textSize="20sp" />-->
+
 
                 </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </ScrollView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/coatCard"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="20dp"
-                style="@style/CardBackground"
-                app:cardElevation="20dp">
+        </FrameLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/coatImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/coat" />
 
-                    <TextView
-                        android:id="@+id/clothingName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/coatImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Coats"
-                        style="@style/TextColor"
-                        android:textSize="20sp" />
 
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+     </RelativeLayout>
 
-<!--  2nd Linear Loyout horizontal -->
-        <LinearLayout
-            android:layout_width="500dp"
-            android:layout_height="175dp"
-            android:id="@+id/row2"
-            android:orientation="horizontal"
-            android:layout_marginTop="400dp"
-            android:padding="10dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row1">
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black">
+    </com.google.android.material.navigation.NavigationView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardElevation="20dp"
-                style="@style/CardBackground"
-                app:cardCornerRadius="20dp">
+    </androidx.drawerlayout.widget.DrawerLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/capName"
-                        android:text="Caps"
-                        android:textSize="20sp"
-                        style="@style/TextColor"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/capImage"/>
 
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/capImage"
-                        android:src="@drawable/cap"
-                        android:layout_marginTop="15dp"
-                        android:layout_centerHorizontal="true" />
 
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardElevation="20dp"
-                style="@style/CardBackground"
-                app:cardCornerRadius="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/frockName"
-                        android:text="Frocks"
-                        android:textSize="20sp"
-                        style="@style/TextColor"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/frockImage"/>
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/frockImage"
-                        android:src="@drawable/frock"
-                        android:layout_marginTop="15dp"
-                        android:layout_centerHorizontal="true" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-<!--  3rd linear layout horizontal-->
-        <LinearLayout
-            android:layout_width="500dp"
-            android:layout_height="175dp"
-            android:id="@+id/row3"
-            android:orientation="horizontal"
-            android:layout_marginTop="550dp"
-            android:padding="10dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row2">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardElevation="20dp"
-                style="@style/CardBackground"
-                app:cardCornerRadius="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/pantName"
-                        android:text="Pants"
-                        android:textSize="20sp"
-                        style="@style/TextColor"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/pantImage"/>
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/pantImage"
-                        android:src="@drawable/pant"
-                        android:layout_marginTop="15dp"
-                        android:layout_centerHorizontal="true" />
-
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardElevation="20dp"
-                style="@style/CardBackground"
-                app:cardCornerRadius="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/shortsName"
-                        android:text="Shorts"
-                        android:textSize="20sp"
-                        style="@style/TextColor"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/shortsImage"/>
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/shortsImage"
-                        android:src="@drawable/shorts"
-                        android:layout_marginTop="15dp"
-                        android:layout_centerHorizontal="true" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/switchMode"
-            android:layout_marginTop="750dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginBottom="10dp"
-            android:thumb="@drawable/thumb"
-            app:track="@drawable/track"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </RelativeLayout>
-</ScrollView>
