@@ -72,6 +72,7 @@
 
                     <TextView
                         android:id="@+id/shirtName"
+                        style="@style/TextColor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/clothingImage"
@@ -79,7 +80,6 @@
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="T-Shirts"
-                        style="@style/TextColor"
                         android:textSize="20sp" />
 
                 </RelativeLayout>
