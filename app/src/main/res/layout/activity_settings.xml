@@ -9,7 +9,7 @@
     android:id="@+id/drawerLayout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".aboutActivity">
+    tools:context=".settingsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

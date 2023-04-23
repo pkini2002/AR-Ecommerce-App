@@ -17,9 +17,7 @@
         <activity
             android:name=".AddProducts"
             android:exported="false" />
-        <activity
-            android:name=".about"
-            android:exported="false" /> <!-- android:theme="@style/Theme.AR_Ecommerce" -->
+        <!-- android:theme="@style/Theme.AR_Ecommerce" -->
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -30,6 +28,15 @@
             android:name=".MainActivity"
             android:exported="false">
         </activity>
+        <activity
+            android:name=".aboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".shareActivity"
+            android:exported="false" />
+        <activity
+            android:name=".settingsActivity"
+            android:exported="false" />
 
         <activity
             android:name=".SplashScreen"

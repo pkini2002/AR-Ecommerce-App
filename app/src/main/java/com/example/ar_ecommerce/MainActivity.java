@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new homeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
     }
@@ -103,18 +102,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId())
         {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new homeFragment()).commit();
+                Intent i=new Intent(this,MainActivity.class);
+                startActivity(i);
                 break;
             case R.id.nav_about:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new aboutFragment()).commit();
-                Intent i=new Intent(this,about.class);
+                i=new Intent(this,aboutActivity.class);
                 startActivity(i);
                 break;
             case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new settingsFragment()).commit();
+                i=new Intent(this,settingsActivity.class);
+                startActivity(i);
                 break;
             case R.id.nav_share:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new shareFragment()).commit();
+                i=new Intent(this,shareActivity.class);
+                startActivity(i);
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
