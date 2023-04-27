@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
-        android:text="Saving..."
+        android:text="Loading..."
         android:textSize="18sp"
         android:textColor="@color/lavender"
         android:gravity="start|center_vertical"/>

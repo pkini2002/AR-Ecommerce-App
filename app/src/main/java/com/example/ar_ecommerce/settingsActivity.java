@@ -7,89 +7,69 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class settingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    ImageSlider imageSlider;
-
-    private DrawerLayout drawerLayout;
-    Toolbar toolbar;
-
+public class settingsActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    List<DataClass> dataList;
+    ValueEventListener eventListener;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        recyclerView=findViewById(R.id.recyclerView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(settingsActivity.this, 1);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
-        drawerLayout = findViewById(R.id.drawerLayout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(settingsActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
-                R.string.close_nav);
+        dataList = new ArrayList<>();
+        MyAdapter adapter=new MyAdapter(settingsActivity.this,dataList);
+        recyclerView.setAdapter(adapter);
 
-
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        if (savedInstanceState == null) {
-            navigationView.setCheckedItem(R.id.nav_settings);
-        }
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId())
-        {
-            case R.id.nav_home:
-                Intent i=new Intent(this,MainActivity.class);
-                startActivity(i);
-                break;
-            case R.id.nav_about:
-                i=new Intent(this,aboutActivity.class);
-                startActivity(i);
-                break;
-            case R.id.nav_settings:
-                i=new Intent(this,settingsActivity.class);
-                startActivity(i);
-            case R.id.nav_share:
-                i=new Intent(this,shareActivity.class);
-                startActivity(i);
-                break;
-            case R.id.nav_logout:
-                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-        {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
-        }
+        databaseReference = FirebaseDatabase.getInstance().getReference("upload");
+        dialog.show();
+        eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dataList.clear();
+                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                    DataClass dataClass = itemSnapshot.getValue(DataClass.class);
+                    dataClass.setKey(itemSnapshot.getKey());
+                    dataList.add(dataClass);
+                }
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                dialog.dismiss();
+            }
+        });
     }
 }
 
