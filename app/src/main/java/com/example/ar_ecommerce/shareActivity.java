@@ -38,15 +38,12 @@ public class shareActivity extends AppCompatActivity implements NavigationView.O
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
                 R.string.close_nav);
 
-
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         if (savedInstanceState == null) {
             navigationView.setCheckedItem(R.id.nav_share);
         }
-
-
     }
 
 
@@ -93,7 +90,5 @@ public class shareActivity extends AppCompatActivity implements NavigationView.O
         else {
             super.onBackPressed();
         }
-
     }
-
 }

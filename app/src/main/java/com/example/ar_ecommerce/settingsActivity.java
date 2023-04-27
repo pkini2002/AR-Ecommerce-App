@@ -45,8 +45,6 @@ public class settingsActivity extends AppCompatActivity implements NavigationVie
         if (savedInstanceState == null) {
             navigationView.setCheckedItem(R.id.nav_settings);
         }
-
-
     }
 
 
@@ -92,8 +90,6 @@ public class settingsActivity extends AppCompatActivity implements NavigationVie
         else {
             super.onBackPressed();
         }
-
     }
-
 }
 
