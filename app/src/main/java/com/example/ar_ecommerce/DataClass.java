@@ -3,14 +3,22 @@ package com.example.ar_ecommerce;
 public class DataClass {
     private String dataTitle;
     private String dataDescription;
-    private int dataCost;
+    private String dataCost;
     private String dataImage;
+    private String key;
 
-    public DataClass(String dataTitle, String dataDescription, int dataCost, String dataImage) {
+    public DataClass(String dataTitle, String dataDescription, String dataCost, String dataImage) {
         this.dataTitle = dataTitle;
         this.dataDescription = dataDescription;
         this.dataCost = dataCost;
         this.dataImage = dataImage;
+    }
+
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getDataTitle() {
@@ -21,7 +29,7 @@ public class DataClass {
         return dataDescription;
     }
 
-    public int getDataCost() {
+    public String getDataCost() {
         return dataCost;
     }
 

@@ -103,7 +103,7 @@ public class aboutActivity extends AppCompatActivity {
     public void uploadData(){
         String title = uploadTopic.getText().toString();
         String desc = uploadDesc.getText().toString();
-        int lang = Integer.parseInt(uploadLang.getText().toString());
+        String lang = uploadLang.getText().toString();
         DataClass dataClass = new DataClass(title, desc, lang, imageURL);
         String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         FirebaseDatabase.getInstance().getReference("upload").child(currentDate)
