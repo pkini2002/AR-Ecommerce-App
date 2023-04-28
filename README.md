@@ -4,7 +4,11 @@ An AR - Ecommerce App built using Java for the backend and Firebase database
 ## Steps to clone the project
 
 ```bash
-git clone https://github.com/pkini2002/FLC-Hackfest-Technoflash.git
+git clone https://github.com/pkini2002/AR-Ecommerce-App.git
+```
+
+```bash
+cd AR-Ecommerce-App
 ```
 
 **Do necessary changes if any and add your code to the staging area**

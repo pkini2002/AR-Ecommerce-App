@@ -9,6 +9,7 @@
     android:id="@+id/drawerLayout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
+    style="@style/ScreenBackground"
     tools:context=".aboutActivity">
 
     <RelativeLayout
@@ -28,6 +29,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            style="@style/ScreenBackground"
             android:id="@+id/fragment_container">
             <TextView
                 android:layout_width="wrap_content"
@@ -36,14 +38,104 @@
                 android:textSize="30dp"
                 android:layout_centerInParent="true"
                 android:textColor="@color/black"/>
-
-
         </FrameLayout>
-
-
-
-
     </RelativeLayout>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        style="@style/ScreenBackground"
+        tools:context=".UploadActivity">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            app:cardCornerRadius="30dp"
+            style="@style/CardBackground"
+            app:cardElevation="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:padding="20dp"
+                style="@style/CardBackground"
+                android:background="@drawable/lavender_border">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Data"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="30sp"
+                    android:textAlignment="center"
+                    style="@style/TextColor"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/uploadimg"
+                    android:id="@+id/uploadImage"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="fitXY"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/uploadTopic"
+                    android:background="@drawable/lavender_border"
+                    android:layout_marginTop="10dp"
+                    android:padding="16dp"
+                    android:hint="Enter product name"
+                    android:gravity="start|center_vertical"
+                    style="@style/TextColor"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:id="@+id/uploadDesc"
+                    android:background="@drawable/lavender_border"
+                    android:layout_marginTop="10dp"
+                    android:padding="16dp"
+                    android:hint="Enter description"
+                    android:gravity="start|center_vertical"
+                    style="@style/TextColor"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/uploadLang"
+                    android:background="@drawable/lavender_border"
+                    android:layout_marginTop="10dp"
+                    android:padding="16dp"
+                    android:hint="Enter Cost"
+                    android:gravity="start|center_vertical"
+                    style="@style/TextColor"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    style="@style/TextColor"
+                    android:background="@drawable/lavender_border"
+                    android:contentDescription="Choose a category"
+                    android:minHeight="48dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Save"
+                    android:id="@+id/saveButton"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/lavender"
+                    android:textColor="@color/white"
+                    app:cornerRadius = "20dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

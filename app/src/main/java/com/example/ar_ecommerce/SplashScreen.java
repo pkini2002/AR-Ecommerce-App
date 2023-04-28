@@ -21,6 +21,5 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIMER); // Delay in milliseconds
-
     }
 }
