@@ -26,4 +26,5 @@
     <style name="TextColor">
         <item name="android:textColor">@color/grey</item>
     </style>
+
 </resources>
