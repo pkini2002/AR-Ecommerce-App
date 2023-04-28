@@ -9,6 +9,7 @@
     android:id="@+id/drawerLayout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
+    style="@style/ScreenBackground"
     tools:context=".aboutActivity">
 
     <RelativeLayout
@@ -28,6 +29,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            style="@style/ScreenBackground"
             android:id="@+id/fragment_container">
             <TextView
                 android:layout_width="wrap_content"
@@ -46,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        style="@style/ScreenBackground"
         tools:context=".UploadActivity">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -54,6 +57,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             app:cardCornerRadius="30dp"
+            style="@style/CardBackground"
             app:cardElevation="20dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,14 +65,16 @@
                 android:orientation="vertical"
                 android:layout_gravity="center_horizontal"
                 android:padding="20dp"
+                style="@style/CardBackground"
                 android:background="@drawable/lavender_border">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Upload Data"
+                    android:fontFamily="@font/poppins_semibold"
                     android:textSize="30sp"
                     android:textAlignment="center"
-                    android:textColor="@color/lavender"/>
+                    style="@style/TextColor"/>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -85,7 +91,7 @@
                     android:padding="16dp"
                     android:hint="Enter product name"
                     android:gravity="start|center_vertical"
-                    android:textColor="@color/lavender"/>
+                    style="@style/TextColor"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -95,7 +101,7 @@
                     android:padding="16dp"
                     android:hint="Enter description"
                     android:gravity="start|center_vertical"
-                    android:textColor="@color/lavender"/>
+                    style="@style/TextColor"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
@@ -105,7 +111,7 @@
                     android:padding="16dp"
                     android:hint="Enter Cost"
                     android:gravity="start|center_vertical"
-                    android:textColor="@color/lavender"/>
+                    style="@style/TextColor"/>
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -113,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
-                    android:textColor="@color/lavender"
+                    style="@style/TextColor"
                     android:background="@drawable/lavender_border"
                     android:contentDescription="Choose a category"
                     android:minHeight="48dp"/>
@@ -124,6 +130,8 @@
                     android:id="@+id/saveButton"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/lavender"
+                    android:textColor="@color/white"
                     app:cornerRadius = "20dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

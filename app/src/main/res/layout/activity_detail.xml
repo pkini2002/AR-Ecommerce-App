@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    style="@style/ScreenBackground"
     tools:context=".DetailActivity">
 
     <TextView
@@ -13,11 +14,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/detailTitle"
         android:text="Title"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="14dp"
-        android:textSize="24sp"
+        android:textSize="40sp"
         android:layout_gravity="center"
         android:layout_marginBottom="12dp"
-        android:textColor="@color/lavender"/>
+        style="@style/TextColor"/>
 
     <ImageView
         android:layout_width="400dp"
@@ -34,10 +36,11 @@
         android:layout_marginTop="10dp"
         android:padding="20dp"
         android:text="Price"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_gravity="center"
         android:id="@+id/detailLang"
         android:textSize="18sp"
-        android:textColor="@color/lavender"/>
+        style="@style/TextColor"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -45,9 +48,42 @@
         android:layout_marginTop="10dp"
         android:padding="20dp"
         android:text="Description"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_gravity="center"
         android:id="@+id/detailDesc"
         android:textSize="18sp"
-        android:textColor="@color/lavender"/>
+        style="@style/TextColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:id="@+id/cart"
+        android:text="Add Cart"
+        android:backgroundTint="@color/lavender"
+        android:textColor="@color/white"
+        android:background="@drawable/lavender_border"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="20sp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="140dp"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:id="@+id/ar"
+        android:text="Try AR"
+        android:backgroundTint="@color/lavender"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/white"
+        android:background="@drawable/lavender_border"
+        android:textSize="20sp"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
