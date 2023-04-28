@@ -106,15 +106,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
             case R.id.nav_about:
-                i=new Intent(this,aboutActivity.class);
+                i=new Intent(this,shareActivity.class);
                 startActivity(i);
                 break;
             case R.id.nav_settings:
-                i=new Intent(this,settingsActivity.class);
+                i=new Intent(this,aboutActivity.class);
                 startActivity(i);
                 break;
             case R.id.nav_share:
-                i=new Intent(this,shareActivity.class);
+                i=new Intent(this,settingsActivity.class);
                 startActivity(i);
                 break;
             case R.id.nav_logout:

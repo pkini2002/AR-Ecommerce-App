@@ -71,7 +71,7 @@
                     android:textColor="@color/lavender"/>
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:src="@drawable/uploadimg"
                     android:id="@+id/uploadImage"
                     android:layout_marginTop="10dp"
@@ -81,7 +81,7 @@
                     android:layout_height="60dp"
                     android:id="@+id/uploadTopic"
                     android:background="@drawable/lavender_border"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:padding="16dp"
                     android:hint="Enter product name"
                     android:gravity="start|center_vertical"
@@ -91,7 +91,7 @@
                     android:layout_height="80dp"
                     android:id="@+id/uploadDesc"
                     android:background="@drawable/lavender_border"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:padding="16dp"
                     android:hint="Enter description"
                     android:gravity="start|center_vertical"
@@ -101,11 +101,22 @@
                     android:layout_height="60dp"
                     android:id="@+id/uploadLang"
                     android:background="@drawable/lavender_border"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:padding="16dp"
                     android:hint="Enter Cost"
                     android:gravity="start|center_vertical"
                     android:textColor="@color/lavender"/>
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:textColor="@color/lavender"
+                    android:background="@drawable/lavender_border"
+                    android:contentDescription="Choose a category"
+                    android:minHeight="48dp"/>
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
