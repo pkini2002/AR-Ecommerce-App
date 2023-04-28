@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -29,10 +32,13 @@ import com.google.firebase.storage.UploadTask;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class aboutActivity extends AppCompatActivity {
+public class aboutActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ImageView uploadImage;
     Button saveButton;
     EditText uploadTopic, uploadDesc, uploadLang;
+    Spinner s;
+    ArrayAdapter ad;
+    String s2[]={"T-Shirts","Coats","Caps","Frocks","Pants","Shorts"};
     String imageURL;
     Uri uri;
     @Override
@@ -45,6 +51,10 @@ public class aboutActivity extends AppCompatActivity {
         uploadTopic = findViewById(R.id.uploadTopic);
         uploadLang = findViewById(R.id.uploadLang);
         saveButton = findViewById(R.id.saveButton);
+        ad=new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,s2);
+        s=findViewById(R.id.spinner);
+        s.setAdapter(ad);
+        s.setOnItemSelectedListener(this);
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -104,7 +114,8 @@ public class aboutActivity extends AppCompatActivity {
         String title = uploadTopic.getText().toString();
         String desc = uploadDesc.getText().toString();
         String lang = uploadLang.getText().toString();
-        DataClass dataClass = new DataClass(title, desc, lang, imageURL);
+        String category = ad.getItem(s.getSelectedItemPosition()).toString();
+        DataClass dataClass = new DataClass(title, desc, lang,category,imageURL);
         String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
         FirebaseDatabase.getInstance().getReference("upload").child(currentDate)
                 .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -121,5 +132,15 @@ public class aboutActivity extends AppCompatActivity {
                         Toast.makeText(aboutActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String s1=ad.getItem(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
