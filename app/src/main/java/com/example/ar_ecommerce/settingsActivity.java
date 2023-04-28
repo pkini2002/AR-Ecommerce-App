@@ -56,6 +56,7 @@ public class settingsActivity extends AppCompatActivity {
         adapter=new MyAdapter(settingsActivity.this,dataList);
         recyclerView.setAdapter(adapter);
 
+
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
         dialog.show();
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
