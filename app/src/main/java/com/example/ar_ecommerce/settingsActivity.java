@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -32,12 +33,16 @@ public class settingsActivity extends AppCompatActivity {
     List<DataClass> dataList;
     ValueEventListener eventListener;
     DatabaseReference databaseReference;
+    SearchView searchView;
+    MyAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
         recyclerView=findViewById(R.id.recyclerView);
+        searchView = findViewById(R.id.search);
+        searchView.clearFocus();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(settingsActivity.this, 1);
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -48,7 +53,7 @@ public class settingsActivity extends AppCompatActivity {
         dialog.show();
 
         dataList = new ArrayList<>();
-        MyAdapter adapter=new MyAdapter(settingsActivity.this,dataList);
+        adapter=new MyAdapter(settingsActivity.this,dataList);
         recyclerView.setAdapter(adapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
@@ -70,6 +75,28 @@ public class settingsActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchList(newText);
+                return true;
+            }
+        });
+    }
+
+    public void searchList(String text){
+        ArrayList<DataClass> searchList = new ArrayList<>();
+        for (DataClass dataClass: dataList){
+            if (dataClass.getDataTitle().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(dataClass);
+            }
+        }
+        adapter.searchDataList(searchList);
     }
 }
 
