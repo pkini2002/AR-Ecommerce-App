@@ -11,13 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".SplashScreen"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".editProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Myprofile"
+            android:exported="false" />
+        <activity
+            android:name=".Createprofile"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".SplashScreen" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".AddProducts"
-            android:exported="false" />
-        <!-- android:theme="@style/Theme.AR_Ecommerce" -->
+            android:exported="false" /> <!-- android:theme="@style/Theme.AR_Ecommerce" -->
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -26,8 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".aboutActivity"
             android:exported="false" />
@@ -37,12 +43,12 @@
         <activity
             android:name=".settingsActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

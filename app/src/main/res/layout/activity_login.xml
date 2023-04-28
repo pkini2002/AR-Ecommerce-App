@@ -33,17 +33,16 @@
                 android:textColor="@color/lavender"/>
 
             <EditText
+                android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/login_email"
-                android:background="@drawable/custom_edittext"
                 android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:hint="Email"
+                android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
-                android:textColor="@color/black"
-                />
+                android:hint="Name"
+                android:padding="8dp"
+                android:textColor="@color/black" />
 
             <EditText
                 android:layout_width="match_parent"
