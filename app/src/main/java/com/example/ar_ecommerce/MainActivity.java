@@ -26,6 +26,12 @@ import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -106,9 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
             case R.id.nav_about:
-                i=new Intent(this,shareActivity.class);
-                startActivity(i);
-                break;
+               passUserData();
             case R.id.nav_settings:
                 i=new Intent(this,aboutActivity.class);
                 startActivity(i);
@@ -137,6 +141,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Exit the app instead of going back to the login/signup page
             finishAffinity();
         }
+    }
+    public void passUserData(){
+
+            Intent intent = getIntent();
+           String userUsername = intent.getStringExtra("name");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("profile");
+        Query checkUserDatabase = reference.orderByChild("name").equalTo(userUsername);
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
+                    String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
+                    String contactFromDB = snapshot.child(userUsername).child("contact").getValue(String.class);
+                    String birthdateFromDB = snapshot.child(userUsername).child("birthdate").getValue(String.class);
+                    Intent intent = new Intent(MainActivity.this, Myprofile.class);
+                    intent.putExtra("name", nameFromDB);
+                    intent.putExtra("email", emailFromDB);
+                    intent.putExtra("contact", contactFromDB);
+                    intent.putExtra("birthdate", birthdateFromDB);
+                    startActivity(intent);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
 

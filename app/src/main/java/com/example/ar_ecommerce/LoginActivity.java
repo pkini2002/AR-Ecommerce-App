@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                         String contactFromDB = snapshot.child(userUsername).child("contact").getValue(String.class);
                         String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
                         String BirthDateFromDB = snapshot.child(userUsername).child("birthdate").getValue(String.class);
-                        Intent intent = new Intent(LoginActivity.this, Myprofile.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("name", nameFromDB);
                         intent.putExtra("email", emailFromDB);
                         intent.putExtra("birthdate", BirthDateFromDB);
