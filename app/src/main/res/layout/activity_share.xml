@@ -36,13 +36,7 @@
                 android:textSize="30dp"
                 android:layout_centerInParent="true"
                 android:textColor="@color/black"/>
-
-
         </FrameLayout>
-
-
-
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

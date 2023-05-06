@@ -53,8 +53,12 @@
             android:name=".shareActivity"
             android:exported="false" />
         <activity
+            android:name=".AllProducts"
+            android:exported="false"/>
+        <activity
             android:name=".settingsActivity"
             android:exported="false" />
+
         <activity
             android:name=".SplashScreen"
             android:exported="true">

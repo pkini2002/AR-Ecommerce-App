@@ -182,10 +182,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i);
                 break;
                 // Implement the add to cart here
-//            case R.id.nav_share:
-//                i=new Intent(this,settingsActivity.class);
-//                startActivity(i);
-//                break;
+            case R.id.nav_share:
+                i=new Intent(this,AllProducts.class);
+                startActivity(i);
+                break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
