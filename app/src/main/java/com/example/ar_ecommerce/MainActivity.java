@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SwitchCompat switchMode;
+    private SessionManager session;
     boolean nightMode;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         imageSlider = findViewById(R.id.ImageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
+        session = new SessionManager(getApplicationContext());
 
         slideModels.add(new SlideModel(R.drawable.mobileecommerce, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.onlineshopping, ScaleTypes.FIT));
@@ -186,10 +188,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 i=new Intent(this,AllProducts.class);
                 startActivity(i);
                 break;
+            case R.id.nav_cart:
+                i=new Intent(this,ViewCart.class);
+                startActivity(i);
+                break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
+               session.setLoggedIn(false);
                 Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
                 break;

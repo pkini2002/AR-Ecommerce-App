@@ -55,6 +55,7 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
 
+                android:hint="Email"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -81,7 +82,7 @@
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
-                android:hint="Birth Date"
+                android:hint="Birth Date (dd-mm-yyyy)"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 app:passwordToggleEnabled="true" />
@@ -95,6 +96,7 @@
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
 
+                android:hint="Password"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
