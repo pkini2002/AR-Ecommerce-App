@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/baseline_shopping_cart_24"
-            android:title="View Cart">
+            android:title="View All Products">
         </item>
     </group>
 
