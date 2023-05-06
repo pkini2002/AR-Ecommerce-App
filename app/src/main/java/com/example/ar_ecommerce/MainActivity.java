@@ -188,6 +188,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 i=new Intent(this,AllProducts.class);
                 startActivity(i);
                 break;
+            case R.id.nav_cart:
+                i=new Intent(this,ViewCart.class);
+                startActivity(i);
+                break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();

@@ -58,6 +58,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ViewCart"
+            android:exported="false" />
+
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
