@@ -176,6 +176,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:layout_weight="1"
+                            android:id="@+id/capCard"
                             app:cardElevation="20dp"
                             style="@style/CardBackground"
                             app:cardCornerRadius="20dp">
@@ -213,6 +214,7 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             app:cardElevation="20dp"
+                            android:id="@+id/frockCard"
                             style="@style/CardBackground"
                             app:cardCornerRadius="20dp">
 
@@ -261,6 +263,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
                             android:layout_weight="1"
+                            android:id="@+id/pantCard"
                             app:cardElevation="20dp"
                             style="@style/CardBackground"
                             app:cardCornerRadius="20dp">
@@ -298,6 +301,7 @@
                             android:layout_margin="10dp"
                             android:layout_weight="1"
                             app:cardElevation="20dp"
+                            android:id="@+id/shortCard"
                             style="@style/CardBackground"
                             app:cardCornerRadius="20dp">
 

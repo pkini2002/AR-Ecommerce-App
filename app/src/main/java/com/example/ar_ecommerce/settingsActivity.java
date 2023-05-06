@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,15 +33,18 @@ public class settingsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<DataClass> dataList;
     ValueEventListener eventListener;
-    DatabaseReference databaseReference;
+    Query databaseQuery; // Declare databaseQuery as Query object instead of DatabaseReference
     SearchView searchView;
     MyAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        recyclerView=findViewById(R.id.recyclerView);
+        String category = getIntent().getStringExtra("category");
+
+        recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.search);
         searchView.clearFocus();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(settingsActivity.this, 1);
@@ -53,17 +57,19 @@ public class settingsActivity extends AppCompatActivity {
         dialog.show();
 
         dataList = new ArrayList<>();
-        adapter=new MyAdapter(settingsActivity.this,dataList);
+        adapter = new MyAdapter(settingsActivity.this, dataList);
         recyclerView.setAdapter(adapter);
 
+        databaseQuery = FirebaseDatabase.getInstance().getReference("upload")
+                .orderByChild("dataCategory")
+                .equalTo(category); // Filter the results based on the category
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("upload");
         dialog.show();
-        eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+        eventListener = databaseQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dataList.clear();
-                for (DataSnapshot itemSnapshot: snapshot.getChildren()){
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
                     DataClass dataClass = itemSnapshot.getValue(DataClass.class);
                     dataClass.setKey(itemSnapshot.getKey());
                     dataList.add(dataClass);
@@ -71,6 +77,7 @@ public class settingsActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 dialog.dismiss();
@@ -82,6 +89,7 @@ public class settingsActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchList(newText);
@@ -90,14 +98,13 @@ public class settingsActivity extends AppCompatActivity {
         });
     }
 
-    public void searchList(String text){
+    public void searchList(String text) {
         ArrayList<DataClass> searchList = new ArrayList<>();
-        for (DataClass dataClass: dataList){
-            if (dataClass.getDataTitle().toLowerCase().contains(text.toLowerCase())){
+        for (DataClass dataClass : dataList) {
+            if (dataClass.getDataTitle().toLowerCase().contains(text.toLowerCase())) {
                 searchList.add(dataClass);
             }
         }
         adapter.searchDataList(searchList);
     }
 }
-
