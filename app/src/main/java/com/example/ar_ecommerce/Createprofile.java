@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Createprofile extends AppCompatActivity {
-        ArrayAdapter ad;
+    ArrayAdapter ad;
     EditText Name,contact, birthdate;
     TextView Email,pass;
 

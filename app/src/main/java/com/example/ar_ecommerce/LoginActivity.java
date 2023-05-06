@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
+    private SessionManager session;
     private EditText loginEmail,loginPassword;
     private TextView signupRedirectText;
     private Button loginButton;
@@ -47,6 +48,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         setContentView(R.layout.activity_login);
+        session = new SessionManager(getApplicationContext());
+
+        // Check if the user is already logged in
+        if (session.isLoggedIn()) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+            return;
+        }
+
         auth=FirebaseAuth.getInstance();
         loginEmail=findViewById(R.id.login_email);
         loginPassword=findViewById(R.id.login_password);
