@@ -30,6 +30,10 @@ public class ARactivity extends AppCompatActivity {
         setContentView(R.layout.activity_aractivity);
 
         hashMap.put("T-Shirt",new ARProductData(R.raw.shirt1,0.59f,0.6f));
+        hashMap.put("Pant",new ARProductData(R.raw.pant2,0.62f,0.65f));
+        hashMap.put("Coat",new ARProductData(R.raw.coat1,0.62f,0.66f));
+        hashMap.put("Shorts",new ARProductData(R.raw.shorts1,0.65f,0.67f));
+        hashMap.put("Caps",new ARProductData(R.raw.cap1,0.66f,0.69f));
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
