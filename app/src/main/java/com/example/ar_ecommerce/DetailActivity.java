@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -71,10 +72,26 @@ public class DetailActivity extends AppCompatActivity {
         ar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this,ARactivity.class);
-                intent.putExtra("name","T-Shirt");
+                Intent intent = new Intent(DetailActivity.this, ARactivity.class);
+                String categoryName = detailCategory.getText().toString();
+                Log.d("CategoryName", categoryName);
+                if (categoryName.equals("T-Shirts")) {
+                    intent.putExtra("name", "T-Shirt");
+                } else if (categoryName.equals("Pants")) {
+                    intent.putExtra("name", "Pant");
+                }
+                else if (categoryName.equals("Shorts")) {
+                    intent.putExtra("name", "Shorts");
+                }
+                else if(categoryName.equals("Caps")){
+                    intent.putExtra("name", "Caps");
+                }
+                else if(categoryName.equals("Coats")){
+                    intent.putExtra("name", "Coat");
+                }
                 startActivity(intent);
             }
         });
+
     }
 }
