@@ -74,7 +74,6 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DetailActivity.this, ARactivity.class);
                 String categoryName = detailCategory.getText().toString();
-                Log.d("CategoryName", categoryName);
                 if (categoryName.equals("T-Shirts")) {
                     intent.putExtra("name", "T-Shirt");
                 } else if (categoryName.equals("Pants")) {
@@ -92,6 +91,11 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(DetailActivity.this, AllProducts.class);
+        intent.putExtra("name", "Prathiksha Kini");
+        startActivity(intent);
     }
 }

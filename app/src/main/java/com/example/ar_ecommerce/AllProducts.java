@@ -20,6 +20,7 @@ import java.util.List;
 
 public class AllProducts extends AppCompatActivity {
     RecyclerView recyclerView;
+    private String nameFromDB;
     List<DataClass> dataList;
     ValueEventListener eventListener;
     DatabaseReference databaseReference;
@@ -45,8 +46,6 @@ public class AllProducts extends AppCompatActivity {
         dataList = new ArrayList<>();
         adapter=new MyAdapter(AllProducts.this,dataList);
         recyclerView.setAdapter(adapter);
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
         dialog.show();
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
@@ -88,5 +87,19 @@ public class AllProducts extends AppCompatActivity {
             }
         }
         adapter.searchDataList(searchList);
+    }
+
+    public void passUserData(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
+    @Override
+    public void onBackPressed() {
+        passUserData();
+        Intent intent = new Intent(AllProducts.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }

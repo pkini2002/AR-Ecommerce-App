@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -103,5 +104,10 @@ public class ARactivity extends AppCompatActivity {
             activity.finish();
             return false;
         }
+    }
+    public void onBackPressed() {
+        Intent intent = new Intent(ARactivity.this, MainActivity.class);
+        intent.putExtra("name", "Sammitha S");
+        startActivity(intent);
     }
 }
