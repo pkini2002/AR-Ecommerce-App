@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Myprofile extends AppCompatActivity {
     TextView profileName, profileEmail, profileContact, profileBirthdate;
     TextView titleName;
+    String nameFromDB,emailFromDB,birthdateFromDB,contactFromDB;
     Button editProfile;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -60,10 +61,10 @@ public class Myprofile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
-                    String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                    String contactFromDB = snapshot.child(userUsername).child("contact").getValue(String.class);
-                    String birthdateFromDB = snapshot.child(userUsername).child("birthdate").getValue(String.class);
+                    nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
+                    emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
+                    contactFromDB = snapshot.child(userUsername).child("contact").getValue(String.class);
+                    birthdateFromDB = snapshot.child(userUsername).child("birthdate").getValue(String.class);
                     Intent intent = new Intent(Myprofile.this, editProfile.class);
                     intent.putExtra("name", nameFromDB);
                     intent.putExtra("email", emailFromDB);
@@ -76,5 +77,19 @@ public class Myprofile extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    public void passUserData1(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
+    @Override
+    public void onBackPressed() {
+        passUserData1();
+        Intent intent = new Intent(Myprofile.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }

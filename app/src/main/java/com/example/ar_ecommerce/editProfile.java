@@ -35,6 +35,7 @@ public class editProfile extends AppCompatActivity {
             public void onClick(View view) {
                 if (isNameChanged() || isContactChanged() || isEmailChanged()||isBirthdateChanged()){
                     Toast.makeText(editProfile.this, "Saved", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(editProfile.this, "No Changes Found", Toast.LENGTH_SHORT).show();
                 }

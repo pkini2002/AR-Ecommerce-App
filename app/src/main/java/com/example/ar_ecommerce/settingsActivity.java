@@ -23,18 +23,22 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class settingsActivity extends AppCompatActivity {
+public class settingsActivity extends AppCompatActivity  {
     RecyclerView recyclerView;
     List<DataClass> dataList;
     ValueEventListener eventListener;
+    String nameFromDB;
     DatabaseReference databaseReference;
     SearchView searchView;
     MyAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,6 @@ public class settingsActivity extends AppCompatActivity {
         dataList = new ArrayList<>();
         adapter=new MyAdapter(settingsActivity.this,dataList);
         recyclerView.setAdapter(adapter);
-
 
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
         dialog.show();
@@ -98,6 +101,22 @@ public class settingsActivity extends AppCompatActivity {
             }
         }
         adapter.searchDataList(searchList);
+    }
+
+
+
+    public void passUserData(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
+    @Override
+    public void onBackPressed() {
+        passUserData();
+        Intent intent = new Intent(settingsActivity.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }
 

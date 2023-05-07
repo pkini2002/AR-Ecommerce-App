@@ -22,7 +22,7 @@ public class shareActivity extends AppCompatActivity implements NavigationView.O
 
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
-
+    String nameFromDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,15 +80,17 @@ public class shareActivity extends AppCompatActivity implements NavigationView.O
         return true;
     }
 
+    public void passUserData(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
     @Override
-    public void onBackPressed()
-    {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-        {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
-        }
+    public void onBackPressed() {
+        passUserData();
+        Intent intent = new Intent(shareActivity.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }
