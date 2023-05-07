@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -41,9 +42,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-
             android:exported="false" />
-
 
         <activity
             android:name=".aboutActivity"
@@ -52,14 +51,21 @@
             android:name=".shareActivity"
             android:exported="false" />
         <activity
+            android:name=".AllProducts"
+            android:exported="false"/>
+        <activity
             android:name=".settingsActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ViewCart"
+            android:exported="false" />
+
         <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -67,6 +73,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="optional" />
     </application>
 
 </manifest>

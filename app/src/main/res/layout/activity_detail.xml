@@ -47,6 +47,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:padding="20dp"
+        android:text="Category"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_gravity="center"
+        android:id="@+id/detailCategory"
+        android:textSize="18sp"
+        style="@style/TextColor"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="20dp"
         android:text="Description"
         android:fontFamily="@font/poppins_semibold"
         android:layout_gravity="center"

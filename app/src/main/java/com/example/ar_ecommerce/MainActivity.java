@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     SwitchCompat switchMode;
+    private SessionManager session;
     boolean nightMode;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
+    CardView shirt,coat,cap,frock,pant,shorts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         imageSlider = findViewById(R.id.ImageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
+        session = new SessionManager(getApplicationContext());
 
         slideModels.add(new SlideModel(R.drawable.mobileecommerce, ScaleTypes.FIT));
         slideModels.add(new SlideModel(R.drawable.onlineshopping, ScaleTypes.FIT));
@@ -82,6 +86,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     editor.putBoolean("nightMode", true);
                 }
                 editor.apply();
+            }
+        });
+
+        // Onclicking the dashboard cards
+        shirt=findViewById(R.id.shirtCard);
+        coat=findViewById(R.id.coatCard);
+        cap=findViewById(R.id.capCard);
+        frock=findViewById(R.id.frockCard);
+        pant=findViewById(R.id.pantCard);
+        shorts=findViewById(R.id.shortCard);
+
+        shirt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,settingsActivity.class);
+                i.putExtra("category", "T-Shirts");
+                startActivity(i);
+            }
+        });
+
+        coat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,settingsActivity.class);
+                i.putExtra("category", "Coats");
+                startActivity(i);
+            }
+        });
+
+        cap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,settingsActivity.class);
+                i.putExtra("category", "Caps");
+                startActivity(i);
+            }
+        });
+
+        frock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,settingsActivity.class);
+                i.putExtra("category", "Frocks");
+                startActivity(i);
+            }
+        });
+
+        pant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,settingsActivity.class);
+                i.putExtra("category", "Pants");
+                startActivity(i);
+            }
+        });
+
+        shorts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,settingsActivity.class);
+                i.putExtra("category", "Shorts");
+                startActivity(i);
             }
         });
 
@@ -151,17 +217,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
 
                 break;
+                // Implement the add to cart here
             case R.id.nav_share:
-
-                intent=new Intent(this,settingsActivity.class);
-                intent.putExtra("name", nameFromDB);
-                startActivity(intent);
+                Intent i=new Intent(this,AllProducts.class);
+                startActivity(i);
+                break;
+            case R.id.nav_cart:
+                i=new Intent(this,ViewCart.class);
+                startActivity(i);
 
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
+
+               session.setLoggedIn(false);
                 intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
 
