@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ImageSlider imageSlider;
-
+    String nameFromDB,emailFromDB,birthdateFromDB,contactFromDB;
+    NavigationView navigationView;
     private DrawerLayout drawerLayout;
     Toolbar toolbar;
     CardView shirt,coat,cap,frock,pant,shorts;
@@ -152,9 +153,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        String userUsername= intent.getStringExtra("name");
 
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("profile");
+        Query checkUserDatabase = reference.orderByChild("name").equalTo(userUsername);
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
+                    emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
+                    contactFromDB = snapshot.child(userUsername).child("contact").getValue(String.class);
+                    birthdateFromDB = snapshot.child(userUsername).child("birthdate").getValue(String.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         drawerLayout = findViewById(R.id.drawerLayout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav,
@@ -163,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
 
         if (savedInstanceState == null) {
             navigationView.setCheckedItem(R.id.nav_home);
@@ -174,37 +194,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId())
         {
             case R.id.nav_home:
-                Intent i=new Intent(this,MainActivity.class);
-                startActivity(i);
+
+                Intent intent=new Intent(this,MainActivity.class);
+                intent.putExtra("name", nameFromDB);
+                startActivity(intent);
+
                 break;
             case R.id.nav_about:
-               passUserData();
+
+                intent=new Intent(this,Myprofile.class);
+                intent.putExtra("name", nameFromDB);
+                intent.putExtra("email", emailFromDB);
+                intent.putExtra("contact", contactFromDB);
+                intent.putExtra("birthdate", birthdateFromDB);
+                startActivity(intent);
+
+               break;
             case R.id.nav_settings:
-                i=new Intent(this,aboutActivity.class);
-                startActivity(i);
+
+                intent=new Intent(this,aboutActivity.class);
+                intent.putExtra("name", nameFromDB);
+                startActivity(intent);
+
                 break;
                 // Implement the add to cart here
             case R.id.nav_share:
-                i=new Intent(this,AllProducts.class);
+                Intent i=new Intent(this,AllProducts.class);
                 startActivity(i);
                 break;
             case R.id.nav_cart:
                 i=new Intent(this,ViewCart.class);
                 startActivity(i);
+
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
+
                session.setLoggedIn(false);
-                Intent intent = new Intent(this, LoginActivity.class);
+                intent = new Intent(this, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
+
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     @Override
     public void onBackPressed() {
@@ -214,34 +252,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Exit the app instead of going back to the login/signup page
             finishAffinity();
         }
-    }
-    public void passUserData(){
-
-            Intent intent = getIntent();
-           String userUsername = intent.getStringExtra("name");
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("profile");
-        Query checkUserDatabase = reference.orderByChild("name").equalTo(userUsername);
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    String nameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
-                    String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                    String contactFromDB = snapshot.child(userUsername).child("contact").getValue(String.class);
-                    String birthdateFromDB = snapshot.child(userUsername).child("birthdate").getValue(String.class);
-                    Intent intent = new Intent(MainActivity.this, Myprofile.class);
-                    intent.putExtra("name", nameFromDB);
-                    intent.putExtra("email", emailFromDB);
-                    intent.putExtra("contact", contactFromDB);
-                    intent.putExtra("birthdate", birthdateFromDB);
-                    startActivity(intent);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
     }
 }
 

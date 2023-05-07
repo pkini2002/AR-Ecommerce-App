@@ -29,13 +29,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class settingsActivity extends AppCompatActivity {
+public class settingsActivity extends AppCompatActivity  {
     RecyclerView recyclerView;
     List<DataClass> dataList;
     ValueEventListener eventListener;
-    Query databaseQuery; // Declare databaseQuery as Query object instead of DatabaseReference
+
+    String nameFromDB;
+    DatabaseReference databaseReference;
     SearchView searchView;
     MyAdapter adapter;
+
+
+
+    Query databaseQuery; // Declare databaseQuery as Query object instead of DatabaseReference
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +68,13 @@ public class settingsActivity extends AppCompatActivity {
         adapter = new MyAdapter(settingsActivity.this, dataList);
         recyclerView.setAdapter(adapter);
 
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("upload");
+
         databaseQuery = FirebaseDatabase.getInstance().getReference("upload")
                 .orderByChild("dataCategory")
                 .equalTo(category); // Filter the results based on the category
+
 
         dialog.show();
         eventListener = databaseQuery.addValueEventListener(new ValueEventListener() {
@@ -106,5 +118,21 @@ public class settingsActivity extends AppCompatActivity {
             }
         }
         adapter.searchDataList(searchList);
+    }
+
+
+
+    public void passUserData(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
+    @Override
+    public void onBackPressed() {
+        passUserData();
+        Intent intent = new Intent(settingsActivity.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }

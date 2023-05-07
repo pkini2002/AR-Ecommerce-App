@@ -35,6 +35,7 @@ import java.util.Calendar;
 public class aboutActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ImageView uploadImage;
     Button saveButton;
+    String nameFromDB;
     EditText uploadTopic, uploadDesc, uploadLang;
     Spinner s;
     ArrayAdapter ad;
@@ -142,5 +143,18 @@ public class aboutActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+    public void passUserData(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
+    @Override
+    public void onBackPressed() {
+        passUserData();
+        Intent intent = new Intent(aboutActivity.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }
