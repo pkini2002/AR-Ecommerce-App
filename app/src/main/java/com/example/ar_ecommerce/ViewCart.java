@@ -1,5 +1,6 @@
 package com.example.ar_ecommerce;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +22,7 @@ public class ViewCart extends AppCompatActivity {
     List<DataClass> dataList;
     ValueEventListener eventListener;
     DatabaseReference databaseReference;
+    private String nameFromDB;
     SearchView searchView;
     MyAdapter adapter;
     @Override
@@ -86,5 +88,19 @@ public class ViewCart extends AppCompatActivity {
             }
         }
         adapter.searchDataList(searchList);
+    }
+
+    public void passUserData(){
+
+        Intent intent = getIntent();
+        nameFromDB = intent.getStringExtra("name");
+
+    }
+    @Override
+    public void onBackPressed() {
+        passUserData();
+        Intent intent = new Intent(ViewCart.this, MainActivity.class);
+        intent.putExtra("name", nameFromDB);
+        startActivity(intent);
     }
 }

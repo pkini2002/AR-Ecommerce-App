@@ -215,17 +215,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent=new Intent(this,aboutActivity.class);
                 intent.putExtra("name", nameFromDB);
                 startActivity(intent);
-
                 break;
-                // Implement the add to cart here
             case R.id.nav_share:
                 Intent i=new Intent(this,AllProducts.class);
+                i.putExtra("name", nameFromDB);
                 startActivity(i);
                 break;
             case R.id.nav_cart:
                 i=new Intent(this,ViewCart.class);
+                i.putExtra("name", nameFromDB);
                 startActivity(i);
-
                 break;
             case R.id.nav_logout:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
