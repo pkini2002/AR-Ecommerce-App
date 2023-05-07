@@ -2,6 +2,7 @@ package com.example.ar_ecommerce;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import java.util.Calendar;
 public class DetailActivity extends AppCompatActivity {
     TextView detailDesc,detailTitle,detailCost,detailCategory;
     ImageView detailImage;
-    Button cart;
+    Button cart,ar;
     DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class DetailActivity extends AppCompatActivity {
         detailCost = findViewById(R.id.detailLang);
         detailCategory=findViewById(R.id.detailCategory);
         cart=findViewById(R.id.cart);
+        ar=findViewById(R.id.ar);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
@@ -62,10 +64,17 @@ public class DetailActivity extends AppCompatActivity {
                 String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
                 // Add the cart item to the database reference
                 databaseReference.child(currentDate).setValue(dataItem);
-
                 Toast.makeText(DetailActivity.this, "Item added to cart", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+        ar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this,ARactivity.class);
+                intent.putExtra("name","T-Shirt");
+                startActivity(intent);
+            }
+        });
+    }
 }

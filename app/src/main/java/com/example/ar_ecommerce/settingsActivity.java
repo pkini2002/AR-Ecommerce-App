@@ -38,9 +38,6 @@ public class settingsActivity extends AppCompatActivity  {
     DatabaseReference databaseReference;
     SearchView searchView;
     MyAdapter adapter;
-
-
-
     Query databaseQuery; // Declare databaseQuery as Query object instead of DatabaseReference
 
 
