@@ -1,3 +1,5 @@
+# AR-Ecommerce-App
+
 ## Problem Statement
 
 The problem statement for this AR e-commerce app project is to provide an immersive
@@ -42,9 +44,6 @@ The AR e-commerce app aims to solve the following problems:
 - [ ] Twilio Messaging API Integration on checkout
 - [ ] AI Chatbot integration
 - [ ] Admin Login and Admin Specific Page View (Upload data)
-
-# AR-Ecommerce-App
-An AR - Ecommerce App built using Java for the backend and Firebase database 
 
 ## Steps to clone the project
 
