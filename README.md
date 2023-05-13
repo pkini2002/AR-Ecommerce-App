@@ -1,6 +1,8 @@
 # AR-Ecommerce-App
 
-## Problem Statement
+⚠️ **This project is currently under development**
+
+## 📌 Problem Statement
 
 The problem statement for this AR e-commerce app project is to provide an immersive
 and interactive shopping experience to the users. Traditional e-commerce platforms offer
@@ -15,14 +17,14 @@ The AR e-commerce app aims to solve the following problems:
 - Inconvenient size and fit: Online shopping makes it difficult for customers to determine the perfect size and fit for their desired product. This leads to a higher number of returns and unsatisfied customers
 -  Lack of interactivity: Traditional e-commerce platforms lack interactivity, whichcan lead to a monotonous shopping experience.
 
-## TechStack Used
+## 💻 TechStack Used
 
 - `Java` 
 - `XML Design (Frontend)`
 - `Firebase database (Realtimedb, Cloud Storage and Authentication db)`
 - `Augmented reality SDK's`
 
-## Screenshots
+## 📸 Screenshots
 
 ![WhatsApp Image 2023-05-13 at 7 39 14 PM](https://github.com/todomd/todo.md/assets/84091455/a9b6e559-299a-4595-b2a5-45b9ade90dfa)
 ![WhatsApp Image 2023-05-13 at 7 39 14 PM (1)](https://github.com/todomd/todo.md/assets/84091455/9257be32-2ad8-481d-b803-0ab285b6d039)
@@ -35,7 +37,7 @@ The AR e-commerce app aims to solve the following problems:
 ![WhatsApp Image 2023-05-13 at 7 39 11 PM (1)](https://github.com/todomd/todo.md/assets/84091455/d77382d7-a80e-4726-b839-423b4c6633ba)
 
 
-## To-do's
+## 🚧 To-do's
 
 - [ ] User's Session Management fixes (Includes View Profile,View Cart and Logout)
 - [ ] AR Product Visualization for each and every item present in a category
