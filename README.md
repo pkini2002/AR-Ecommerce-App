@@ -1,6 +1,11 @@
 # AR-Ecommerce-App
 
-⚠️ **This project is currently under development**
+<br>
+<a href="https://codeclimate.com/github/pkini2002/AR-Ecommerce-App/maintainability">
+<img src="https://api.codeclimate.com/v1/badges/8769ddb1d541a5ba8c64/maintainability" /></a>
+<a href="https://codeclimate.com/github/pkini2002/AR-Ecommerce-App/test_coverage">
+<img src="https://api.codeclimate.com/v1/badges/8769ddb1d541a5ba8c64/test_coverage" /></a>
+<br><br>
 
 ## 📌 Problem Statement
 
